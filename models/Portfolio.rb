@@ -15,7 +15,7 @@ class Portfolio
     total_stock_end_value = 0
 
     @stocks.each do |stock|
-      # We look if the value is 0 or more, if it isn't, it means the date has not a related value
+      # We check if the value is 0 or more, if it isn't, it means the date has not a related value
       # so we set the value to 0.
       total_stock_start_value += stock.price_at(start_date) > 0 ? stock.price_at(start_date) : 0
       total_stock_end_value += stock.price_at(end_date) > 0 ? stock.price_at(end_date) : 0
@@ -31,7 +31,7 @@ class Portfolio
     total_stock_value = 0
 
     @stocks.each do |stock|
-      # We look if the value is 0 or more, if it isn't, it means the date has not a related value
+      # We check if the value is 0 or more, if it isn't, it means the date has not a related value
       # and we set the value to 0.
       total_stock_value += stock.price_at(date) > 0 ? stock.price_at(date) : 0
     end
