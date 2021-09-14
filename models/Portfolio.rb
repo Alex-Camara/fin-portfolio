@@ -8,8 +8,8 @@ class Portfolio
 
   # Returns the profit value between two dates and its annualized return.
   #
-  # start_date - the start date represented as a String with format "YYYY-MM-DD"
-  # end_date - The end date represented as a String with format "YYYY-MM-DD"
+  # start_date - the start date represented as a String with format 'YYYY-MM-DD'
+  # end_date - The end date represented as a String with format 'YYYY-MM-DD'
   def profit(start_date, end_date)
 
     portfolio_start_value = value_at(start_date)
@@ -19,14 +19,14 @@ class Portfolio
 
     annualized_return = annualized_return(profit, start_date, end_date)
 
-    profit_response = Hash["profit" => profit, "annualized_return" => annualized_return]
+    profit_response = Hash['profit' => profit, 'annualized_return' => annualized_return]
 
     return profit_response
   end
 
   # Returns the profit value at a given date.
   #
-  # date - the date represented as a String with format "YYYY-MM-DD"
+  # date - the date represented as a String with format 'YYYY-MM-DD'
   def value_at(date)
     total_stock_value = 0
 
@@ -41,8 +41,8 @@ class Portfolio
 
   # Returns the number of days between the dates.
   #
-  # start_date - the start date represented as a String with format "YYYY-MM-DD"
-  # end_date - The String end date represented as as a String with format "YYYY-MM-DD"
+  # start_date - the start date represented as a String with format 'YYYY-MM-DD'
+  # end_date - The String end date represented as as a String with format 'YYYY-MM-DD'
   def days_between(start_date, end_date)
     start_date = Date.parse(start_date)
     end_date = Date.parse(end_date)
@@ -53,8 +53,8 @@ class Portfolio
   # Returns the portfolio's annualized return between two dates.
   #
   # profit - portfolio profit value between the given dates
-  # start_date - the start date represented as a String with format "YYYY-MM-DD"
-  # end_date - The String end date represented as as a String with format "YYYY-MM-DD"
+  # start_date - the start date represented as a String with format 'YYYY-MM-DD'
+  # end_date - The String end date represented as as a String with format 'YYYY-MM-DD'
   def annualized_return(profit, start_date, end_date)
     annualized_return = 0
 

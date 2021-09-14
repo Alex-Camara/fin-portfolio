@@ -4,6 +4,10 @@ require 'csv'
 
 describe Portfolio do
 
+  # Retrieves the records of the given csv file path and assigns them to a hash
+  # representing the stock prices.
+  # 
+  # csv_file - csv file path as a String
   def stock_test_prices(csv_file)
     test_stock_data = CSV.read(csv_file, headers: true, converters: :numeric)
     stock_prices = Hash.new
@@ -38,7 +42,7 @@ describe Portfolio do
     context 'when given a date' do
       it 'returns the price at the given date' do
         portfolio = Portfolio.new([@amazon_stocks, @google_stocks])
-        expected_response = Hash["profit" => 1955.869995, "annualized_return" => 0.47]
+        expected_response = Hash['profit' => 1955.869995, 'annualized_return' => 0.47]
         expect(portfolio.profit('2020-09-21', '2021-09-02')).to eq(expected_response)
       end
     end
@@ -46,7 +50,7 @@ describe Portfolio do
     context 'when the given dates are not present in the stock data' do
       it 'returns 0' do
         portfolio = Portfolio.new([@amazon_stocks, @google_stocks])
-        expected_response = Hash["profit" => 0, "annualized_return" => 0]
+        expected_response = Hash['profit' => 0, 'annualized_return' => 0]
         expect(portfolio.profit('2019-08-26', '2018-09-10')).to eq(expected_response)
       end
     end
