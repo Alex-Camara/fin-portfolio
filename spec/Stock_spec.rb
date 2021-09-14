@@ -6,7 +6,7 @@ describe Stock do
   # Retrieves the records of the given csv file path and assigns them to a hash
   # representing the stock prices.
   # 
-  # csv_file - csv file path as a String
+  # csv_file - csv relative file path as a String
   def stock_test_prices(csv_file)
     test_stock_data = CSV.read(csv_file, headers: true, converters: :numeric)
     prices_by_date = Hash.new
