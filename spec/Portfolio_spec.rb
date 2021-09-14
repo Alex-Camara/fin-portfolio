@@ -38,14 +38,16 @@ describe Portfolio do
     context 'when given a date' do
       it 'returns the price at the given date' do
         portfolio = Portfolio.new([@amazon_stocks, @google_stocks])
-        expect(portfolio.profit('2020-09-21', '2021-09-02')).to eq(1955.869995)
+        expected_response = Hash["profit" => 1955.869995, "annualized_return" => 0.47]
+        expect(portfolio.profit('2020-09-21', '2021-09-02')).to eq(expected_response)
       end
     end
 
     context 'when the given dates are not present in the stock data' do
       it 'returns 0' do
         portfolio = Portfolio.new([@amazon_stocks, @google_stocks])
-        expect(portfolio.profit('2019-08-26', '2018-09-10')).to eq(0)
+        expected_response = Hash["profit" => 0, "annualized_return" => 0]
+        expect(portfolio.profit('2019-08-26', '2018-09-10')).to eq(expected_response)
       end
     end
   end
@@ -70,15 +72,17 @@ describe Portfolio do
     context 'when given a set of two dates' do
       it 'returns the annualized return of the portfolio between the two dates' do
         portfolio = Portfolio.new([@amazon_stocks, @google_stocks])
-        annualized_return = portfolio.annualized_return('2020-09-21', '2021-09-02')
+        profit = 1955.869995
+        annualized_return = portfolio.annualized_return(profit, '2020-09-21', '2021-09-02')
         expect(annualized_return).to eq(0.47)
       end
     end
 
     context 'when given a set of two dates that is not present in the stock data' do
-      it 'returns the annualized return of the portfolio between the two dates' do
+      it 'returns 0' do
         portfolio = Portfolio.new([@amazon_stocks, @google_stocks])
-        annualized_return = portfolio.annualized_return('2019-09-21', '2019-09-02')
+        profit = 0
+        annualized_return = portfolio.annualized_return(profit, '2019-09-21', '2019-09-02')
         expect(annualized_return).to eq(0)
       end
     end

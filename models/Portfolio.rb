@@ -6,22 +6,22 @@ class Portfolio
     @stocks = stocks
   end
 
-  # Returns the profit value between two dates.
+  # Returns the profit value between two dates and its annualized return.
   #
   # start_date - the start date represented as a String with format "YYYY-MM-DD"
   # end_date - The end date represented as a String with format "YYYY-MM-DD"
   def profit(start_date, end_date)
-    total_stock_start_value = 0
-    total_stock_end_value = 0
 
-    @stocks.each do |stock|
-      # We check if the value is 0 or more, if it isn't, it means the date has not a related value
-      # so we set the value to 0.
-      total_stock_start_value += stock.price_at(start_date) > 0 ? stock.price_at(start_date) : 0
-      total_stock_end_value += stock.price_at(end_date) > 0 ? stock.price_at(end_date) : 0
-    end
+    portfolio_start_value = value_at(start_date)
+    portfolio_end_value = value_at(end_date)
 
-    return total_stock_end_value - total_stock_start_value
+    profit = portfolio_end_value - portfolio_start_value
+
+    annualized_return = annualized_return(profit, start_date, end_date)
+
+    profit_response = Hash["profit" => profit, "annualized_return" => annualized_return]
+
+    return profit_response
   end
 
   # Returns the profit value at a given date.
@@ -52,21 +52,21 @@ class Portfolio
 
   # Returns the portfolio's annualized return between two dates.
   #
+  # profit - portfolio profit value between the given dates
   # start_date - the start date represented as a String with format "YYYY-MM-DD"
   # end_date - The String end date represented as as a String with format "YYYY-MM-DD"
-  def annualized_return(start_date, end_date)
+  def annualized_return(profit, start_date, end_date)
     annualized_return = 0
 
-    profit = profit(start_date, end_date)
-    value_at_start_date = value_at(start_date)
+    portfolio_start_value = value_at(start_date)
 
     # Check if the profit and the portfolio value at start date are bigger than 0 
     # if not, they formula can't be applied.
-    if (profit > 0 && value_at_start_date > 0)
+    if (profit > 0 && portfolio_start_value > 0)
 
       # Obtain the cumulative return with the formula
       # cumulative_return = profit / original price of security
-      cumulative_return = profit / value_at_start_date
+      cumulative_return = profit / portfolio_start_value
 
       # Get the power period which is obtained using the formula:
       # days in year / the number of days the stock has been in the portfolio
