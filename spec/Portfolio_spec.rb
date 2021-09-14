@@ -74,5 +74,13 @@ describe Portfolio do
         expect(annualized_return).to eq(0.47)
       end
     end
+
+    context 'when given a set of two dates that is not present in the stock data' do
+      it 'returns the annualized return of the portfolio between the two dates' do
+        portfolio = Portfolio.new([@amazon_stocks, @google_stocks])
+        annualized_return = portfolio.annualized_return('2019-09-21', '2019-09-02')
+        expect(annualized_return).to eq(0)
+      end
+    end
   end
 end

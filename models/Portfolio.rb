@@ -55,17 +55,25 @@ class Portfolio
   # start_date - the start date represented as a String with format "YYYY-MM-DD"
   # end_date - The String end date represented as as a String with format "YYYY-MM-DD"
   def annualized_return(start_date, end_date)
+    annualized_return = 0
+
     profit = profit(start_date, end_date)
+    value_at_start_date = value_at(start_date)
 
-    # Obtain the cumulative return with the formula
-    # cumulative_return = profit / original price of security
-    cumulative_return = profit / value_at(start_date)
+    # Check if the profit and the portfolio value at start date are bigger than 0 
+    # if not, they formula can't be applied.
+    if (profit > 0 && value_at_start_date > 0)
 
-    # We get the power period which is obtained using the formula:
-    # days in year / the number of days the stock has been in the portfolio
-    power_period = DAYS_IN_A_YEAR / days_between(start_date, end_date).to_f
+      # Obtain the cumulative return with the formula
+      # cumulative_return = profit / original price of security
+      cumulative_return = profit / value_at_start_date
 
-    annualized_return = (cumulative_return + 1) ** power_period - 1
+      # Get the power period which is obtained using the formula:
+      # days in year / the number of days the stock has been in the portfolio
+      power_period = DAYS_IN_A_YEAR / days_between(start_date, end_date).to_f
+
+      annualized_return = (cumulative_return + 1) ** power_period - 1
+    end
 
     return annualized_return.round(2)
   end
