@@ -65,9 +65,11 @@ class Portfolio
       cumulative_return = profit / portfolio_start_value
 
       # Get the power period which is obtained using the formula:
-      # days in year / the number of days the stock has been in the portfolio
+      # days in year (365) / days_held: the number of days the stock has been in the portfolio
       power_period = DAYS_IN_A_YEAR / days_between(start_date, end_date).to_f
 
+      # Get the annualized return using the formula:
+      # (cumulative_return + 1) ^ (365 / days_held) - 1
       annualized_return = (cumulative_return + 1) ** power_period - 1
     end
 
