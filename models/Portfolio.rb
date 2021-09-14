@@ -11,11 +11,7 @@ class Portfolio
   # start_date - the start date represented as a String with format 'YYYY-MM-DD'
   # end_date - The end date represented as a String with format 'YYYY-MM-DD'
   def profit(start_date, end_date)
-
-    portfolio_start_value = value_at(start_date)
-    portfolio_end_value = value_at(end_date)
-
-    profit = portfolio_end_value - portfolio_start_value
+    profit = value_at(end_date) - value_at(start_date)
 
     annualized_return = annualized_return(profit, start_date, end_date)
 

@@ -1,4 +1,4 @@
-# fintual-portfolio
+# Fintual-portfolio
 
 * This project is structured as follows: 
 
@@ -11,4 +11,4 @@
     * Go to the spec directory
     * Execute in terminal the command "bundle exec rspec ."
 
-This project was developed using a basic Test Driven Development (TDD) approach, developing the unit tests first and then adding the functionality in the corresponding class, allowing the tests to correctly reflect and document the code functionality.
+This project was developed using a very basic *Test Driven Development* (TDD) approach, developing the unit tests first and then adding the functionality in the corresponding class, allowing the tests to correctly reflect and document the code functionality.
