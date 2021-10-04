@@ -1,4 +1,4 @@
-# Fintual-portfolio
+# Stocks-portfolio
 
 * This project is structured as follows: 
 
